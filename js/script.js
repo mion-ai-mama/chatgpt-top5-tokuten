@@ -29,20 +29,20 @@
       ? `<div class="hero__author"><img class="hero__avatar" src="${esc(h.avatar.src)}" alt="${esc(h.avatar.alt)}" width="56" height="56"><span class="hero__name">${h.avatar.name}</span></div>`
       : "";
     const visual = h.visual
-      ? `<div class="hero__visual"><img src="${esc(h.visual.src)}" alt="${esc(h.visual.alt)}"></div>`
+      ? `<div class="hero__visual"><img src="${esc(h.visual.src)}" alt="${esc(h.visual.alt)}" width="${h.visual.width}" height="${h.visual.height}"></div>`
       : "";
     return `
     <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero__inner${h.visual ? " hero__inner--visual" : ""}">
+      <div class="container hero__inner">
         <div class="hero__text">
           <p class="hero__brand">${h.brand}</p>
+          ${visual}
           <h1 class="hero__title" id="hero-title">${h.titleLines.join("<br>")}</h1>
           <p class="hero__subtitle">${h.subtitle}</p>
           <div class="hero__lead">${paragraphs(h.lead)}</div>
           ${avatar}
           <a class="btn btn--ghost" href="#${esc(h.buttonTarget)}" data-scroll>${h.buttonText}</a>
         </div>
-        ${visual}
       </div>
     </section>`;
   }

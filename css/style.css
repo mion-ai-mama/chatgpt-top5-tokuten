@@ -117,7 +117,8 @@ a:focus-visible, button:focus-visible {
 .hero__author { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
 .hero__avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c-line); }
 .hero__name { font-size: 14px; color: var(--c-muted); line-height: 1.5; }
-.hero__visual img { border-radius: var(--radius-m); width: 100%; }
+.hero__visual { margin-bottom: 24px; }
+.hero__visual img { display: block; width: 100%; height: auto; border-radius: var(--radius-m); }
 
 /* ---------- CTA ---------- */
 .cta-soft {
@@ -270,7 +271,6 @@ a:focus-visible, button:focus-visible {
   :root { --gutter: 32px; --space-section: 80px; }
   body { font-size: 17px; }
   .hero { padding-top: 64px; }
-  .hero__inner--visual { grid-template-columns: 1.2fr 1fr; align-items: center; }
   .learn { grid-template-columns: 220px 1fr; gap: 40px; align-items: start; }
   .cta-soft { grid-template-columns: 1fr auto; align-items: center; gap: 32px; padding: 28px 36px; }
   .cta-soft .btn { justify-self: end; }

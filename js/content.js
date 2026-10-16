@@ -31,7 +31,13 @@ const CONTENT = {
     buttonTarget: "overview",
     // 本人写真（アイコン）を使う版: { src, alt, name } ／ 使わない版: null
     avatar: null,
-    visual: null,
+    // タイトルの上に出すイメージ画像: { src, alt, width, height } ／ なし: null
+    visual: {
+      src: "assets/images/hero-top5.png",
+      alt: "TOP5の一覧。5位 タスク機能、4位 アプリ連携、3位 スキル、2位 コンピューター操作、1位 Codex",
+      width: 1200,
+      height: 1010,
+    },
   },
 
   // SECTION 02：冒頭CTA（本文より目立ちすぎない淡いグレージュの横長ボックス）

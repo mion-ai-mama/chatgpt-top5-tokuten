@@ -108,7 +108,12 @@ a:focus-visible, button:focus-visible {
   font-size: clamp(30px, 8.4vw, 40px); line-height: 1.4; letter-spacing: .02em; color: var(--c-ink);
   text-wrap: balance;
 }
+.hero__subtitle {
+  margin: 0 0 20px; font-family: var(--font-serif); font-weight: 500;
+  font-size: 18px; line-height: 1.7; color: var(--c-ink);
+}
 .hero__lead { margin-bottom: 24px; font-size: 16px; color: var(--c-body); }
+.hero__lead p { margin-bottom: .9em; }
 .hero__author { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
 .hero__avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c-line); }
 .hero__name { font-size: 14px; color: var(--c-muted); line-height: 1.5; }
@@ -133,7 +138,8 @@ a:focus-visible, button:focus-visible {
   margin: 0 0 16px; font-family: var(--font-serif); font-weight: 600;
   font-size: 25px; line-height: 1.55; color: var(--c-ink); text-wrap: balance;
 }
-.cta-final p { margin-bottom: 24px; text-align: left; }
+.cta-final p { margin-bottom: 12px; text-align: left; }
+.cta-final__text { margin-bottom: 24px; }
 
 .textbook { margin-top: 40px; }
 .textbook__banner { display: block; margin: 20px 0; border-radius: var(--radius-m); overflow: hidden; border: 1px solid var(--c-line); }
@@ -161,10 +167,11 @@ a:focus-visible, button:focus-visible {
   background: var(--c-taupe); color: #fff; border-radius: 4px; font-size: 13px;
 }
 .point-box__list { margin: 0; padding-left: 1.4em; }
+.point-box--caution { margin-top: 0; }
+.point-box--caution .point-box__list { display: grid; gap: 8px; }
 
 /* ---------- STEP ---------- */
 .step { padding: var(--space-section) 0 0; }
-.step:last-of-type { padding-bottom: var(--space-section); }
 .step__head { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
 .step__no {
   flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -178,7 +185,66 @@ a:focus-visible, button:focus-visible {
   font-family: var(--font-serif); font-weight: 600; font-size: 22px; line-height: 1.5; color: var(--c-ink);
 }
 .step__lead { margin: 0; padding-left: 14px; font-size: 15px; color: var(--c-muted); }
-.step__body > * + * { margin-top: 20px; }
+.step__body > * + * { margin-top: 36px; }
+.step__body > .block + .block { margin-top: 36px; }
+.block > * + * { margin-top: 16px; }
+.block > .sub-heading + * { margin-top: 12px; }
+.sub-heading {
+  margin: 0; padding-left: 12px; border-left: 3px solid var(--c-greige);
+  font-family: var(--font-serif); font-weight: 600; font-size: 18px; line-height: 1.5; color: var(--c-ink);
+}
+.source { margin: 0; font-size: 13px; color: var(--c-muted); }
+.source a { color: var(--c-taupe); text-underline-offset: 3px; }
+
+/* ---------- 5つの機能の早見表 ---------- */
+.overview__lead { margin-bottom: 20px; }
+.overview__list { list-style: none; margin: 0 0 24px; padding: 0; border-top: 1px solid var(--c-line); }
+.overview__item {
+  display: flex; align-items: center; gap: 16px; padding: 18px 4px; min-height: 48px;
+  border-bottom: 1px solid var(--c-line); color: inherit; text-decoration: none;
+}
+.overview__item:hover { background: var(--c-point); }
+.overview__rank {
+  flex: none; width: 44px; text-align: center;
+  font-family: var(--font-serif); font-size: 34px; line-height: 1; color: var(--c-taupe);
+}
+.overview__rank small { font-size: 13px; margin-left: 1px; }
+.overview__body { display: grid; gap: 2px; flex: 1; min-width: 0; }
+.overview__name { font-family: var(--font-serif); font-size: 18px; line-height: 1.5; color: var(--c-ink); }
+.overview__summary { font-size: 15px; line-height: 1.6; }
+.overview__for { font-size: 13.5px; line-height: 1.6; color: var(--c-muted); }
+.overview__arrow { flex: none; color: var(--c-taupe); font-size: 18px; }
+
+/* ---------- 番号つき手順（シンプルなSTEP表示） ---------- */
+.num-list { list-style: none; counter-reset: n; margin: 0; padding: 0; }
+.num-list li { position: relative; counter-increment: n; padding: 4px 0 18px 48px; }
+.num-list li::before {
+  content: counter(n); position: absolute; left: 0; top: 2px;
+  display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;
+  border: 1.5px solid var(--c-taupe); border-radius: 50%;
+  font-family: var(--font-serif); font-size: 15px; line-height: 1; color: var(--c-taupe);
+}
+.num-list li:not(:last-child)::after {
+  content: ""; position: absolute; left: 15.5px; top: 38px; bottom: 4px; width: 1px; background: var(--c-line);
+}
+.num-list li:last-child { padding-bottom: 4px; }
+
+/* ---------- どれから始める ---------- */
+.chooser { list-style: none; margin: 20px 0 24px; padding: 0; display: grid; gap: 10px; }
+.chooser__item {
+  display: flex; flex-direction: column; gap: 2px;
+  min-height: 48px; padding: 14px 18px; background: #fff; border: 1px solid var(--c-line);
+  border-radius: var(--radius-m); color: inherit; text-decoration: none;
+}
+.chooser__item:hover { border-color: var(--c-greige); }
+.chooser__need { font-size: 15.5px; color: var(--c-ink); }
+.chooser__to { font-weight: 700; font-size: 15px; color: var(--c-taupe); }
+.chooser__to::before { content: "→ "; }
+
+/* ---------- みおんからのメッセージ ---------- */
+.message { max-width: 34em; }
+.message p { margin-bottom: 1.4em; font-family: var(--font-serif); font-size: 17px; line-height: 2; color: var(--c-ink); }
+.message p:last-child { margin-bottom: 0; }
 
 .figure { margin: 0; padding: 12px; border: 1px solid var(--c-line); border-radius: var(--radius-m); background: #fff; }
 .figure img { border-radius: var(--radius-s); width: 100%; }

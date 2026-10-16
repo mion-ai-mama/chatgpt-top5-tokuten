@@ -6,6 +6,9 @@
 
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const list = (items, cls) => (items && items.length ? `<ul class="${cls}">${items.map((i) => `<li>${i}</li>`).join("")}</ul>` : "");
+  const numbered = (items) =>
+    items && items.length ? `<ol class="num-list">${items.map((i) => `<li>${i}</li>`).join("")}</ol>` : "";
+  const paragraphs = (items) => (items || []).map((p) => `<p>${p}</p>`).join("");
   const arrow = (url, text, cls) => `<a class="btn ${cls || ""}" href="${esc(url)}" target="_blank" rel="noopener">${text}</a>`;
 
   function setMeta(selector, value) {
@@ -34,7 +37,8 @@
         <div class="hero__text">
           <p class="hero__brand">${h.brand}</p>
           <h1 class="hero__title" id="hero-title">${h.titleLines.join("<br>")}</h1>
-          <p class="hero__lead">${h.lead}</p>
+          <p class="hero__subtitle">${h.subtitle}</p>
+          <div class="hero__lead">${paragraphs(h.lead)}</div>
           ${avatar}
           <a class="btn btn--ghost" href="#${esc(h.buttonTarget)}" data-scroll>${h.buttonText}</a>
         </div>
@@ -60,16 +64,30 @@
     </section>`;
   }
 
-  function learn(l) {
-    const intro = l.intro ? `<div class="point-box point-box--lead"><p>${l.intro}</p></div>` : "";
+  function overview(o, features) {
+    const items = features
+      .map(
+        (f) => `
+          <li>
+            <a class="overview__item" href="#${esc(f.id)}" data-scroll>
+              <span class="overview__rank">${f.rank}<small>位</small></span>
+              <span class="overview__body">
+                <strong class="overview__name">${f.name}</strong>
+                <span class="overview__summary">${f.summary}</span>
+                <span class="overview__for">${o.forLabel}${f.audience}</span>
+              </span>
+              <span class="overview__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>`
+      )
+      .join("");
     return `
-    <section class="section" aria-labelledby="learn-title">
+    <section class="section" id="overview" aria-labelledby="overview-title">
       <div class="container">
-        <div class="learn">
-          <h2 class="heading heading--side" id="learn-title">${l.heading}</h2>
-          ${list(l.items, "check-list")}
-        </div>
-        ${intro}
+        <h2 class="heading" id="overview-title">${o.heading}</h2>
+        <p class="overview__lead">${o.lead}</p>
+        <ol class="overview__list">${items}</ol>
+        <aside class="point-box"><p class="point-box__label">${o.noteLabel}</p><p>${o.note}</p></aside>
       </div>
     </section>`;
   }
@@ -90,44 +108,66 @@
       </div>`;
   }
 
-  function point(p) {
-    const ex = p.examples && p.examples.length
-      ? `<p class="point-box__ex">${p.examplesLabel || "例"}</p>${list(p.examples, "point-box__list")}`
-      : "";
-    return `<aside class="point-box"><p class="point-box__label">${p.label}</p><p>${p.text}</p>${ex}</aside>`;
+  function caution(c) {
+    return `<aside class="point-box point-box--caution"><p class="point-box__label">${c.label}</p>${list(c.items, "point-box__list")}</aside>`;
   }
 
-  function step(s, i) {
-    const id = "step" + (i + 1);
-    const body = (s.paragraphs || []).map((p) => `<p>${p}</p>`).join("");
+  function block(b, featureId) {
     return `
-    <section class="step" id="${id}" aria-labelledby="${id}-title">
+        <div class="block">
+          ${b.heading ? `<h3 class="sub-heading">${b.heading}</h3>` : ""}
+          ${paragraphs(b.paragraphs)}
+          ${list(b.list, "check-list")}
+          ${numbered(b.ordered)}
+          ${(b.figures || []).map(figure).join("")}
+          ${b.prompt ? prompt(b.prompt, featureId + "-prompt") : ""}
+          ${b.caution ? caution(b.caution) : ""}
+        </div>`;
+  }
+
+  function feature(f) {
+    return `
+    <section class="step" id="${esc(f.id)}" aria-labelledby="${esc(f.id)}-title">
       <div class="container">
         <header class="step__head">
-          <p class="step__no" aria-hidden="true"><span>STEP</span>${s.number}</p>
+          <p class="step__no" aria-hidden="true"><span>RANK</span>${f.rank}</p>
           <div>
-            <h2 class="step__title" id="${id}-title"><span class="visually-hidden">STEP ${s.number}　</span>${s.title}</h2>
-            <p class="step__lead">${s.lead}</p>
+            <h2 class="step__title" id="${esc(f.id)}-title"><span class="visually-hidden">第${f.rank}位　</span>${f.name}</h2>
+            <p class="step__lead">${f.lead}</p>
           </div>
         </header>
         <div class="step__body">
-          ${body}
-          ${list(s.list, "check-list")}
-          ${(s.figures || []).map(figure).join("")}
-          ${s.prompt ? prompt(s.prompt, id + "-prompt") : ""}
-          ${s.point ? point(s.point) : ""}
+          ${f.blocks.map((b) => block(b, f.id)).join("")}
+          <p class="source">${f.source.label}<a href="${esc(f.source.url)}" target="_blank" rel="noopener noreferrer">${f.source.linkText}</a></p>
         </div>
       </div>
     </section>`;
   }
 
-  function summary(s) {
+  function chooser(c) {
+    const items = c.items
+      .map(
+        (i) =>
+          `<li><a class="chooser__item" href="#${esc(i.target)}" data-scroll><span class="chooser__need">${i.need}</span><span class="chooser__to">${i.to}</span></a></li>`
+      )
+      .join("");
     return `
-    <section class="section section--soft" aria-labelledby="summary-title">
+    <section class="section section--soft" aria-labelledby="chooser-title">
       <div class="container">
-        <h2 class="heading" id="summary-title">${s.heading}</h2>
-        ${list(s.items, "check-list")}
-        <aside class="point-box"><p class="point-box__label">${s.nextStep.label}</p><p>${s.nextStep.text}</p></aside>
+        <h2 class="heading" id="chooser-title">${c.heading}</h2>
+        <p>${c.lead}</p>
+        <ul class="chooser">${items}</ul>
+        <aside class="point-box"><p class="point-box__label">${c.nextStep.label}</p><p>${c.nextStep.text}</p></aside>
+      </div>
+    </section>`;
+  }
+
+  function message(m) {
+    return `
+    <section class="section" aria-labelledby="message-title">
+      <div class="container">
+        <h2 class="heading" id="message-title">${m.heading}</h2>
+        <div class="message">${paragraphs(m.paragraphs)}</div>
       </div>
     </section>`;
   }
@@ -138,7 +178,7 @@
       <div class="container">
         <div class="cta-final">
           <h2 class="cta-final__title" id="final-cta-title">${c.heading}</h2>
-          <p>${c.text}</p>
+          <div class="cta-final__text">${paragraphs(c.text)}</div>
           ${arrow(url, c.buttonText, "btn--large")}
         </div>
         <div class="textbook">
@@ -178,6 +218,7 @@
         if (dest) {
           e.preventDefault();
           dest.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+          history.replaceState(null, "", link.getAttribute("href"));
         }
       }
     });
@@ -191,9 +232,10 @@
     main.innerHTML =
       hero(c.hero) +
       topCta(c.topCta, c.lineUrl) +
-      learn(c.learn) +
-      c.steps.map(step).join("") +
-      summary(c.summary) +
+      overview(c.overview, c.features) +
+      c.features.map(feature).join("") +
+      chooser(c.chooser) +
+      message(c.message) +
       finalCta(c.finalCta, c.textbook, c.lineUrl);
     document.getElementById("footer").innerHTML = `<p>${c.footer.copyright}</p><p>${c.footer.notice}</p>`;
     bind();

@@ -1,15 +1,10 @@
-# Instagram特典ページ テンプレート v2
+# 40代からのChatGPT神機能TOP5（特典ページ）
 
-みおん｜AI特典ページ共通デザイン（白×黒×グレージュ・明朝見出し）の静的サイトテンプレートです。
+リール「知らなきゃ損！40代からでも使いこなしたい！ChatGPTの神機能TOP5！」の視聴者向け特典ページです。
+みおん｜AI特典ページ共通デザイン（白×黒×グレージュ・明朝見出し）の v2 テンプレートから作成しました。
 
-## 使い方
-
-1. GitHubで **Use this template** から複製する
-2. `js/content.js` を書き換える（文章・STEP・画像・プロンプト。LINEリンクは `lineUrl`）
-3. 画面キャプチャを `assets/images/` に置き、各STEPの `figures` で指定する
-4. 写真ありバージョン: `hero.avatar = { src: "assets/images/profile-icon.jpg", alt, name }` ／ なしバージョン: `null`
-5. GitHub Pages（main）で公開する
-
-見た目の調整は `css/style.css` の `:root`、設計の基準は `docs/requirements.md` を参照してください。
-
-ローカル確認: `python3 -m http.server 8000` → http://localhost:8000
+- 文章・画像・LINEリンク: `js/content.js`（単一の源）
+- 色・フォント・余白: `css/style.css` の `:root`
+- 画面キャプチャは `assets/images/` に置き、`figures` の `src` / `alt` / `caption` を差し替える
+- ローカル確認: `python3 -m http.server <port>`
+- 機能内容は2026年10月16日時点のOpenAI公式情報に基づく。公開前・更新時は公式ヘルプで再確認する

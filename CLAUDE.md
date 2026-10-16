@@ -1,4 +1,4 @@
-# Instagram特典ページ テンプレート v2（白×黒×グレージュ）
+# 40代からのChatGPT神機能TOP5（v2デザイン・特典ページ）
 
 > 設計の共通原則は `~/.claude/CLAUDE.md` に従う。デザイン基準は `docs/requirements.md`（共通デザイン仕様書）。
 
@@ -8,7 +8,7 @@
 
 ## 運用ルール
 
-- 新しい特典は「Use this template」で複製して `js/content.js` を書き換える。**このテンプレート自体は編集しない**（共通デザインの改善は別途依頼時のみ）
+- このリポジトリは v2 テンプレートから複製した「ChatGPT神機能TOP5」特典ページ。内容の編集は `js/content.js`。早見表・機能解説・どれから始める等の追加部品は、この特典のために `script.js`/`style.css` に追加済み（テンプレート本体へは未反映）
 - 文章・画像・LINEリンクの単一の源は `js/content.js`。色・フォント・余白の単一の源は `css/style.css` の `:root`。特典ごとにCSSを足さない
 - 旧テンプレート（`instagram-tokuten-template`・ピンク系）と既存特典は、明示指示がない限り変更しない
 - 操作画面は実キャプチャのみ。`assets/images/sample-screen.svg` はサンプル枠なので本番では必ず差し替える

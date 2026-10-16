@@ -175,9 +175,14 @@ const CONTENT = {
           ],
           figures: [
             {
+              src: "assets/images/plugin-list.png",
+              alt: "左メニューの「プラグイン」を開いた画面。インストール済みのプラグインと、人気のプラグイン（Gmail、Google Drive、Supabase、Health、GitHub、Outlook Email）の一覧が表示されている",
+              caption: "左メニューの「プラグイン」を開くと、使えるプラグインの一覧が出ます。上の「スキル」のタブは、第3位で使います。",
+            },
+            {
               src: SAMPLE_SCREEN,
-              alt: "差し替え枠：プラグインの一覧画面と、Install plugin／Connectの画面キャプチャが入ります",
-              caption: "【画面キャプチャ差し替え予定】プラグインの一覧と、Connectの画面",
+              alt: "差し替え枠：Install plugin／Connectの画面キャプチャが入ります",
+              caption: "【画面キャプチャ差し替え予定】Install plugin と Connect の画面",
             },
           ],
         },
@@ -250,7 +255,7 @@ const CONTENT = {
         {
           heading: "初心者向け：作りかた（スキルが使える環境の場合）",
           ordered: [
-            "サイドバーの「プラグイン」を開き、「Skills（スキル）」のタブを選びます。",
+            "サイドバーの「プラグイン」を開き、「スキル」のタブを選びます。",
             "「Create」→「Create with chat」を選びます。",
             "ChatGPTからの質問に答えます（どんな作業か、守りたいルール、見本など）。",
             "できあがったスキルを「インストール」します。",

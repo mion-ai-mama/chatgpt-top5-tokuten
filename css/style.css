@@ -126,7 +126,10 @@ a:focus-visible, button:focus-visible {
   background: var(--c-section); border-radius: var(--radius-m);
 }
 .cta-soft__image { display: block; border-radius: var(--radius-s); overflow: hidden; border: 1px solid var(--c-line); background: #fff; }
-.cta-soft__image img { width: 100%; height: auto; }
+/* スマホでは画像を大きめに表示し、横にスワイプして5つの特典を読めるようにする */
+.cta-soft__image { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cta-soft__image img { width: 760px; max-width: none; height: auto; }
+.cta-soft__hint { margin-top: -8px; font-size: 12px; color: var(--c-muted); text-align: center; white-space: nowrap; }
 .cta-soft__title { margin: 0 0 6px; font-family: var(--font-serif); font-size: 19px; color: var(--c-ink); line-height: 1.5; }
 .cta-soft p { font-size: 14.5px; }
 .cta-soft .btn { justify-self: start; }
@@ -275,6 +278,9 @@ a:focus-visible, button:focus-visible {
   .cta-soft { grid-template-columns: 1fr auto; align-items: center; gap: 32px; padding: 28px 36px; }
   .cta-soft .btn { justify-self: end; }
   .cta-soft__image { grid-column: 1 / -1; }
+  .cta-soft__image { overflow: hidden; }
+  .cta-soft__image img { width: 100%; max-width: 100%; }
+  .cta-soft__hint { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -93,7 +93,10 @@
   }
 
   function figure(f) {
-    return `<figure class="figure"><img src="${esc(f.src)}" alt="${esc(f.alt)}" loading="lazy"><figcaption>${f.caption}</figcaption></figure>`;
+    const img = `<img src="${esc(f.src)}" alt="${esc(f.alt)}" loading="lazy">`;
+    // 実画面は小さな文字が読めるよう、タップで原寸表示（差し替え枠のSVGは除く）
+    const body = f.src.endsWith(".svg") ? img : `<a href="${esc(f.src)}" target="_blank" rel="noopener">${img}</a>`;
+    return `<figure class="figure">${body}<figcaption>${f.caption}${f.src.endsWith(".svg") ? "" : "（タップで拡大）"}</figcaption></figure>`;
   }
 
   function prompt(p, id) {

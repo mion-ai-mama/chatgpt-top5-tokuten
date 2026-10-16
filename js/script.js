@@ -221,7 +221,6 @@
         if (dest) {
           e.preventDefault();
           dest.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-          history.replaceState(null, "", link.getAttribute("href"));
         }
       }
     });
@@ -242,6 +241,10 @@
       finalCta(c.finalCta, c.textbook, c.lineUrl);
     document.getElementById("footer").innerHTML = `<p>${c.footer.copyright}</p><p>${c.footer.notice}</p>`;
     bind();
+    // 共有・保存されたURLにアンカー(#...)が付いていても、必ずページの先頭から開く
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

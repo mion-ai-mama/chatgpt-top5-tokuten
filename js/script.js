@@ -49,7 +49,7 @@
 
   function topCta(c, url) {
     const image = c.image
-      ? `<a class="cta-soft__image" href="${esc(url)}" target="_blank" rel="noopener"><img src="${esc(c.image.src)}" alt="${esc(c.image.alt)}" width="1855" height="848"></a><p class="cta-soft__hint">← 横にスワイプで、5つの特典が見られます →</p>`
+      ? `<a class="cta-soft__image" href="${esc(url)}" target="_blank" rel="noopener"><img src="${esc(c.image.src)}" alt="${esc(c.image.alt)}" width="1855" height="848"></a>`
       : "";
     return `
     <section class="container" aria-labelledby="top-cta-title">
@@ -58,6 +58,7 @@
         <div class="cta-soft__text">
           <h2 class="cta-soft__title" id="top-cta-title">${c.heading}</h2>
           <p>${c.text}</p>
+          ${c.items ? `<ul class="cta-soft__list">${c.items.map((i) => `<li>${i}</li>`).join("")}</ul>` : ""}
         </div>
         ${arrow(url, c.buttonText)}
       </div>

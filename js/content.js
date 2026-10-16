@@ -39,6 +39,14 @@ const CONTENT = {
   topCta: {
     heading: "AIをもっと仕事に活かしたい方へ",
     text: "AIを使って、自分にできることや働き方の選択肢を広げたい方に、役立つ情報をご案内しています。",
+    // 画像内の5大特典を、スマホでも読める文字で並べる
+    items: [
+      "いま一番始めやすい、AIマネタイズ手法",
+      "ChatGPT収益化プロンプト3選",
+      "AIマネタイズ神テンプレート",
+      "マネタイズのための生成AIツール3選",
+      "AI×SNSで収益を生む、リアル事例",
+    ],
     buttonText: "詳しくはこちら →",
     image: {
       src: "assets/images/textbook-benefits.jpg",

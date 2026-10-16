@@ -343,17 +343,28 @@ const CONTENT = {
         {
           heading: "初心者向け：はじめかた（デスクトップ版・MacとWindows）",
           ordered: [
-            "ChatGPTのデスクトップアプリを開き、「ChatGPT」で「Work」に切り替えます。",
-            "「プラグイン」→「Computer Use」を開き、「Install plugin」を押します。表示されたら「Enable」も押します。",
+            "デスクトップアプリを開き、左上のメニューで「ChatGPT」を選びます（もうひとつの選択肢は「Codex」です）。",
+            "ページ上部の「Chat」「Work」の切り替えで、「Work」を選びます。",
+            "「プラグイン」から「Computer Use」を探して入れ、有効にします。",
             "Macの場合は、「画面収録」と「アクセシビリティ」の許可を求められるので、許可します。",
             "依頼に「@Computer」やアプリ名を添えて、どのアプリで何をするかを具体的に書きます。",
             "アプリを使う前に許可の確認が出ます。内容を確かめて「Allow」を押します。作業中は画面を見守り、気になったらすぐ止められます。",
           ],
           figures: [
             {
+              src: "assets/images/work-switch.png",
+              alt: "ChatGPTデスクトップアプリの左上のメニューを開いた画面。「ChatGPT」と「Codex」の2つが選べ、ページ上部に「Chat」と「Work」の切り替えが表示されている",
+              caption: "① 左上のメニューで「ChatGPT」を選ぶと、ページ上部に「Chat」「Work」の切り替えが出ます。",
+            },
+            {
+              src: "assets/images/work-mode.png",
+              alt: "「Work」を選んだ画面。「何に取り組みましょうか？」と表示され、入力欄の下に「プロジェクトを選択」と「プラグイン」のボタンがある",
+              caption: "② 「Work」を選ぶと、この画面になります。入力欄の下に「プラグイン」のボタンがあります。",
+            },
+            {
               src: SAMPLE_SCREEN,
-              alt: "差し替え枠：Computer Useの設定画面と、許可の確認画面のキャプチャが入ります",
-              caption: "【画面キャプチャ差し替え予定】Computer Useの設定と、アプリの許可確認",
+              alt: "差し替え枠：Computer Useのインストール画面と、アプリの許可確認の画面キャプチャが入ります",
+              caption: "【画面キャプチャ差し替え予定】Computer Useのインストールと、アプリの許可確認",
             },
           ],
         },
